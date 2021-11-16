@@ -66,7 +66,6 @@ def get_screenshot(link: str, uid: str):
     driver.get(link)
     sleep(3)
     data = driver.get_screenshot_as_png()
-    print(save_path)
     with open(save_path, 'wb') as f:
         f.write(data)
     driver.close()
