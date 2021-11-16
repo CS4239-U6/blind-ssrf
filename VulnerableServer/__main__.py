@@ -48,8 +48,7 @@ def index():
     # Help the admin generate a report on the website
     uid = uuid4().hex
     link = result['link']
-    mp.Process(target=generate_whole_report, args=(
-        uid, link, result['title'], result['body'])).start()
+    generate_whole_report(uid, link, result['title'], result['body'])
 
     flash(f'Form submitted successfully. Report ID: {uid}', 'success')
     return redirect('/')
@@ -61,12 +60,13 @@ def generate_whole_report(uid: str, link: str, title: str, body: str):
 
 
 def get_screenshot(link: str, uid: str):
-    save_path = f'screenshots/{uid}.png'
+    save_path = f'{os.path.dirname(__file__)}/screenshots/{uid}.png'
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     driver.get(link)
     sleep(3)
     data = driver.get_screenshot_as_png()
+    print(save_path)
     with open(save_path, 'wb') as f:
         f.write(data)
     driver.close()
@@ -75,7 +75,7 @@ def get_screenshot(link: str, uid: str):
 
 
 def generateReport(uid: str, title: str, body: str, link: str, ss_link: str):
-    save_path = f'./report/{uid}.md'
+    save_path = f'{os.path.dirname(__file__)}/report/{uid}.md'
     out_format = report_template.format(
         title=title, link=link, body=body, ss_link=os.path.join('..', ss_link))
     with open(save_path, 'w') as f:
