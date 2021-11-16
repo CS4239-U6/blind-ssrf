@@ -8,7 +8,8 @@ from flask import Flask, request, render_template, flash, redirect, g
 # For screenshot
 from time import sleep
 from selenium import webdriver
-from chromedriver_py import binary_path
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 
 app = Flask(__name__)
@@ -61,7 +62,8 @@ def generate_whole_report(uid: str, link: str, title: str, body: str):
 
 def get_screenshot(link: str, uid: str):
     save_path = f'screenshots/{uid}.png'
-    driver = webdriver.Chrome(executable_path=binary_path)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
     driver.get(link)
     sleep(3)
     data = driver.get_screenshot_as_png()

@@ -9,6 +9,10 @@ In other words, the attacker cannot exactly see the result of their actions, i.e
 The impact of Blind SSRF is lower than that of their fully-informed counterpart because of their one-way nature.
 They cannot be easily exploited by the user to receive backend information.
 
+## Requirements
+1. Google Chrome
+2. Python 3.6+
+
 ## How do attackers know that requests are firing off?
 
 It is usually checked via sending a HTTP request from a vulnerable system to an external system that is controlled by the malicious attacker.
@@ -20,16 +24,6 @@ If a HTTP request is observed by an attacker, then it is vulnerable to SSRF.
 1. Clone the repo with `git clone https://github.com/CS4239-U6/blind-ssrf.git`.
 1. Install requirements using `pip3 install -r requirements.txt`.
 1. Run the vulnerable server using `python3 VulnerableServer/__main__.py`.
-
-## Run using Docker
-
-If you do not wish to set up the Python dependencies above, an easier way to get started is using Docker.
-
-Make sure you have Docker installed locally before doing the following:
-
-1. Build the file with `docker build -t blind-ssrf .`.
-1. Run the Dockerfile with `docker run -dt -p 5000:5000 blind-ssrf`.
-1. Visit `http://localhost:5000` to see the website.
 
 ## Vulnerability
 
