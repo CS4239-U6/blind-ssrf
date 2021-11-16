@@ -1,25 +1,27 @@
 # Blind SSRF
 
-Blind SSRF arises when an application can be indeced to issue a back-end HTTP request to a supplied URL, but the response from the backend-request is not returned in the application's front-end response.
+Blind SSRF arises when an application can be induced to issue a backend HTTP request to a supplied URL,
+but the response from the backend request is not returned in the application's frontend response.
+In other words, the attacker cannot exactly see the result of their actions, i.e. "blind".
 
-## What is the effect of blind SSRF?
+## What is the effect of Blind SSRF?
 
-The impact of blind SSRF is lower than that of the fully informed SSRF because of their one way nature. They cannot be easily exploited by the user to receive backend information.
+The impact of Blind SSRF is lower than that of their fully-informed counterpart because of their one-way nature.
+They cannot be easily exploited by the user to receive backend information.
 
-## How is it detected?
+## How do attackers know that requests are firing off?
 
-It is usually detected by sending a http request from a vulnerable system to an external system that is controlled by the malicious attacker.
+It is usually checked via sending a HTTP request from a vulnerable system to an external system that is controlled by the malicious attacker.
 
-If a http request is observed by an attacker, then it is vulnerable to SSRF.
+If a HTTP request is observed by an attacker, then it is vulnerable to SSRF.
 
+## Quick Start
 
-# Quick Start
-1. Clone the repo with `git clone https://github.com/CS4239-U6/blind-ssrf.git`
-2. Go to the vulnerable server using `cd "vulnerable server"`
-3. Install requirements using `pip install -r requirements.txt`
-4. Run the file using `python __main__.py`
+1. Clone the repo with `git clone https://github.com/CS4239-U6/blind-ssrf.git`.
+1. Install requirements using `pip3 install -r requirements.txt`.
+1. Run the vulnerable server using `python3 VulnerableServer/__main__.py`.
 
+## Tech Stack
 
-# Tech stack
-1. flask - web framework
-2. selenium - screenshot functions
+1. `flask`: Web framework.
+1. `selenium`: For screenshot functionalities.

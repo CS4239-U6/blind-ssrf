@@ -27,37 +27,37 @@
     <div class="alert alert-primary" role="alert">{{ message }}</div>
     {%endif %} {% endfor %} {% endif %} {% endwith %}
     <div class="container">
-      <h1>Blind SSRF reporting</h1>
+      <h1>Blind SSRF Reporting</h1>
       <p>
-        Report any of the wesites to the below blank if you find any blind ssrf
+        Report any of the websites to the below blank if you find any blind SSRF
         vulnerabilities.
       </p>
-      <form class="form-group" method="post" action="/">
-        <div>
-          <label for="inputsm">Title</label>
+      <form method="post" action="/">
+        <div class="form-group">
+          <label for="title">Title</label>
           <input
             class="form-control input-sm"
-            id="inputsm"
+            id="title"
             type="text"
             name="title"
             placeholder="Title"
           />
         </div>
         <div class="form-group">
-          <label for="inputsm">Report Link</label>
+          <label for="link">Report Link</label>
           <input
             class="form-control input-sm"
-            id="inputsm"
+            id="link"
             type="text"
             name="link"
             placeholder="Your suspicious link here"
           />
         </div>
         <div class="form-group">
-          <label for="inputlg">Message</label>
+          <label for="body">Message</label>
           <textarea
             class="form-control input-lg input-field"
-            id="inputlg"
+            id="body"
             type="text"
             name="body"
             style="height: 200px"

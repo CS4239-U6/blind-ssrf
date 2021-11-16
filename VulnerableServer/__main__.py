@@ -47,7 +47,8 @@ def index():
     # Help the admin generate a report on the website
     uid = uuid4().hex
     link = result['link']
-    mp.Process(target=generate_whole_report, args=(uid, link, result['title'], result['body'])).start()
+    mp.Process(target=generate_whole_report, args=(
+        uid, link, result['title'], result['body'])).start()
 
     flash(f'Form submitted successfully. Report ID: {uid}', 'success')
     return redirect('/')
@@ -56,7 +57,7 @@ def index():
 def generate_whole_report(uid: str, link: str, title: str, body: str):
     ss_link = get_screenshot(link, uid)
     generateReport(uid, title, body, link, ss_link)
-    
+
 
 def get_screenshot(link: str, uid: str):
     save_path = f'screenshots/{uid}.png'
@@ -77,6 +78,7 @@ def generateReport(uid: str, title: str, body: str, link: str, ss_link: str):
         title=title, link=link, body=body, ss_link=os.path.join('..', ss_link))
     with open(save_path, 'w') as f:
         f.write(out_format)
+
 
 if __name__ == "__main__":
     app.run(debug=False)
